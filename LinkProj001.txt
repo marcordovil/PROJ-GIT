@@ -1,0 +1,23 @@
+https://github.com/marcordovil/PROJ-GIT/blob/4b8a0b82220b4663c911122935aab4144bf98bd1/Proj001.ipynb
+
+
+
+# Feature Importance: Seleciona as características mais importantes 
+# com base na importância calculada pelo modelo.
+# Recursive Feature Elimination (RFE): Remove características recursivamente 
+# e constrói o modelo sobre as características restantes.
+
+# Importar bibliotecas necessárias
+import pandas as pd
+import warnings
+warnings.filterwarnings("ignore")
+
+
+# Carregar o conjunto de dados
+data = pd.read_csv("C:\\MESTRADO\\01PROJ-PESQUISA\\DADOS\\stad_data_clinical_ctgr.txt", sep="\t")
+from pycaret.classification import *
+
+# Configuração do ambiente
+s = setup(data, target='Molecular subtype', session_id=123)
+# Seleção de características
+selected_features = select_best_features(estimator='rf', n_features_to_select=10)
